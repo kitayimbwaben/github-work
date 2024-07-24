@@ -1,0 +1,165 @@
+                         ******RESOURCE GOVERNANCE******8
+**Problem Statement**: 
+An organization employs a number of bright young minds every year to help innovate. But sometimes, those bright young minds forget to enable versioning or encryption on their buckets. 1. ****A company requires to identify when systems are noncompliant? **** 2. The organization also wishes to monitor if the correct tag identifiers are not applied to the system? We need every resource tagged with key identifiers, such as the cost center. 
+
+****SOLUTION **** 
+For managing the configurations of your system, you can use AWS Config. You can get notified as soon as your systems are  changed  and you can set up automatic rollbacks. 
+ Secondly using AWS Config, you can create custom rules based on your specific requirements . **********You can enforce  configurations, including proper  resource tagging. This helps you to quickly find noncompliant resources**. 
+  ********   
+          AWS Config, AWS EC2 , AWS
+                                       *********OBJECTIVES********  
+
+**Create AWS Config rules for versioning and encryption**. 
+*** Create a custom AWSConfig rule to enforce tagging policy****.  
+
+Resource Governance: **Use AWS Config rules to enforce standards and ensure architecture consistency**. 
+ 
+                                   **********STEP BY STEP GUIDE**********;  
+
+1.    In the top navigation bar search box, type Config . **********[AWS Config is a fully managed service that provides you with an AWS resource inventory, configuration history and configuration change notifications to enable security and governance]*******. 
+
+
+2. On the AWS Config console home page, click Get started. Go to the next step. 
+
+3. In the settings step, for Recording strategy, choose Record all current and future resource types supported in this region. 
+    Choose the check box to select include globally recorded resource types. 
+  For AWS Config role, choose Create AWS Config service linked role. 
+    Scroll down to Delivery method. 
+    Go to the next step. 
+
+4. For Amazon S3 bucket, choose create a bucket. 
+   For s3 bucket name, review the provided name. 
+   Note that your bucket's name is config bucket . <randomnumber>. 
+   Click next . Go to the next step. 
+
+5. In the Rules Step, under AWS Managed Rules, type: 
+      **s3-default-encryption-kms** 
+
+    -Under Name choose the check box to select s3-default-encryption-kms. Click next Go to Next Step. 
+
+6. In the Review step, review the name of your s3 bucket. 
+   To see the rules you selected to implement click to expand AWS Config rules. 
+   Click Confirm. Go to the next step. 
+
+7. In the left navigation pane, click Rules. 
+   If it appears. close the Welcome to AWS Config pop-up box. 
+   Go to the next step.  
+
+8. In the Rules section. review to ensure that the rule was created. 
+    **In the left navigation pane, click Dashboard**. 
+     Go to the next step. 
+      
+9. Wait a few minutes, and then , in the Compliance status section, review to ensure that the following are displayed: 
+     -Noncompliant rule(s) 
+     -Noncompliant resource(s)  
+
+    In the noncompliant rules by noncompliant resource count section, click **s3-default-encryption-kms**. 
+    Go to the next step. 
+
+10. In the Reources in scope section, review to see that your config-bucket is currently noncompliant. If a resource violates a rule, AWS Config flags the resource and the rule as noncompliant.  
+
+11. In the top navigation bar search box, type: **s3**  
+       In the search results under services, click** S3**. Go to next. 
+
+12. In the Buckets section. click your config bucket name. Go to the next step. A configuration snapshot contains details for all resources that AWS Config records in your AWS account. **The configuration history file and configuration snapshot are in JSON format**. 
+
+13. Click the properties tab . Go to the next step. 
+
+14. Scroll down to the Default encryption. **In the default encryption section click edit** . The objects are encrypted using server-side encryption with either Amazon s3 managed keys(SSE-S3) or AWS KMS keys stored in AWS Key Management Service.
+
+15. -For Encryption type, choose SSE-KMS. 
+    -For AWS KMS, choose the radio button to select choose from your AWS KMS Keys. 
+    -For Available AWS KMS Keys, choose the key that contains aws/s3. 
+    -Scroll down to the bottom of the page and then click save changes (not shown). 
+     Go to the next step. 
+
+16. In  the top navigation search bar type **config** Go to nxt step. 
+
+17. If not already there , In the left navigation pane, click dashboard. 
+    Wait for a few minutes for the dashboard to be updated . Refresh the browser to update the compliance status. Click compliant resources go to next. 
+
+18. In the resources section, review to see that your config bucket is now compliant. In the left navigation pane click rules . Go to next step.  
+
+
+19. In the rules section,  click ad rule. Go to next step. 
+
+20. In the specify rule type step, for select rule type, choose Add AWS managed rule ; 
+     - In the search box type: ****required tags** 
+     - Choose the radio button to select ****required-tags **** 
+     - **A tag is a label that you assign to an AWS resource. Each tag consists of a key and an optional value, both of which you define**. 
+**   
+
+21. In the rule configure step, review the details section. 
+    - Scroll down to evaluation mode. 
+    - Go to the next step.      
+
+22. For scope of changes, choose resources. 
+     - For resource category, on the dropdown menu, choose AWS resources. 
+     - For resource type, on the dropdown menu, choose AWS EC2 instance. 
+    Scroll down to parameters. Go to nex step. 
+
+23. In the parameters section , for the tag1 key. Under value type; 
+    - **Costcenter**.  
+    - For tag2key, type value: ******Environment 
+
+    - For tag2type value type: **ProdQADev,Staging**; 
+    - For tag3key type:  **AuditLevel**. 
+    - For tag3value, type: **PII,Normal,PCI**. 
+    - For tag4key, type: ******Name ******  
+    - For tag5key, type: ****Owner****   
+     
+24. Click next, then nxt step. 
+
+25. In the review and create step, review your required parameters. Click save go to the next step. 
+
+26. In the left navigation pane, click Dashboard. Go to next step.   
+
+27. In the Noncompliant rules by noncompiant resources count section, review to see that reqired tags has 1 Non compliant resource(s). 
+     This might take a few minutes to populate, refresh the browser to update the compliance status. 
+     Click required-tags . Go to the next step.   
+
+28. Scroll down to resources in scope.   
+    Review the noncompliant resources. 
+    - **Note the EC2 instance ID**, **which is noncompliant**. Go to the next step. 
+    
+29. In the top navigation bar search box, type : ****ec2 ****   
+       In the search results, under services click EC2. 
+       Tags are useful when you have many resources of the same type, **Such as a fleet ec2 instances**. Tags are useful when you have many resources of the same type, such as a fleet of ec2 instances. 
+
+30. - In the left navigation pane, click instances. 
+    - In the instances section, choose the check box to select the web server EC2 instance. 
+    - If your resources are tagged properly, you can quickly identify a specific resource based on thetags that you 
+       have assigned to it.  
+    - Go to the next step.     
+
+31. Click the tags tab. 
+    Click Managed tags. 
+    Go to next step.  
+
+32. Click add new tag. Go to the next step. 
+
+33. Click add new tag. Go to the next step.  
+
+34. Be sure that the following tags exactly match what you entered when you created the AWS Config rule. The key and the value are both case-sensitive. 
+  For Key. type: 
+  **CostCenter** 
+
+  and for value, type: **1337**   
+
+  Click add new tag, and then for key type: ****Auditlevel **** 
+
+
+35. Navigate to the AWS Config console, and then, in the left navigation pane, click Rules.  
+    - Remember, on the top navigation bar, you can use the services search box(or click services) to navigate to a different service console.  
+    - In the Rules section, choose the radio button to select required tags. 
+    - Click Actions to expand the dropdown menu.  
+    - Choose Re evaluate.  Nxt step.  
+
+36. Click the circle next to view details button to refresh. In the Rules section, review to see that the required  tags rule status has changed to compliant.  
+    - The rule might take a few minutes to become compiant. Go to the next step.  
+
+                                               **********END********** 
+ 
+                             
+
+    
