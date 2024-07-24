@@ -1,0 +1,377 @@
+                               ** **CLOUD INFRASTRUCTURE WITH GENERATIVE AI** 
+**
+An IT personel working for the city's IT department has been tasked with automating the deployment of their AWS resources. 
+His first project is a new application for the census. 
+
+**Solution:** You can produce cloudformation templates with minimal coding through the AWS Cloud Development Kit , using a programming language your already comfortable with such as **Typscript, Javascript, Python, Java , .NET and GO.** 
+
+Here it brings About AWS CDK ,  a framework for defining and provisioning cloud infrastructure resources using familiar programming languages. But their is no need for CDK as AWS CodeWhisperer to help write the code.  
+
+ ****CodeWhisperer is an AI powered productivity tool that helps you generate code suggestions ranging from snippets to full functions in real time based on comments and existing code**.  
+**
+
+We can use AWS CDK and Codewhisperer to build and deploy our Architecture . ****You can even use the CDK to put your infrastructure , application code and configuration all in one place to ensure a complete cloud deployable system.** 
+**
+
+   ****PROJECT OBJECTIVES** :** 
+            
+**Create AWS resources using AWS CDK and Python. 
+
+****Use codewhisperer to suggest code from comments and context. 
+**
+****Enable auto suggestions in codeWhisperer**. 
+**
+**Deploy the application and its AWS resources.** 
+[TOOLS] 
+              [CLOUD9,CDK,CODEWHISPERER,CLOUDFORMATION]
+console
+     Speed up and Automate the deployment and management of Cloud Infrastructure using the AWS Cloud Development Kit and CodeWhisperer 
+    
+              ********CLOUDINFRASTRUCTURE WITH GENERATIVE AI STEP BY STEP;******
+**
+1. In the top search box type Cloud9 . Go to next step. 
+
+2. On the AWS Cloud9 menu pannel click on the menu items three times to expand the navigation pane. Go to the next step. 
+
+3. The IDE Opens ina new browser tab (window). Keep the current page and browser tab open. You will return to it in alater step. **###### AWS Cloud9 comes prepackaged programming languages, including javaScript, Python, PHP and more .So you don't need to install files or configure your development machine to start new projects. 
+**
+4. In the Developer Tools window, click to expand CodeWhisperer. Next to Resume Auto Suggestions, click the play icon. Auto suggestions provide you with code snippets that help streamline and speed up the coding process. Then next. 
+
+5. Amazon codewhisperer is a general purpose, machine learning-powered code generator that provides you with code recommendations in real time. 
+
+6. In the bottom bash terminal window, at the command prompt, run(type the command and press Enter): 
+   **** **mkdir cdkapp** **** In the left side panel, click the Environment(**folder**) icon. 
+     In the Environment window, review to see that the **cdkapp directory** was created. 
+     To change the directory to cdkapp in the bottom terminal, run****: cd cdkapp**
+       **
+
+7. Using the " -a" option you can specify an app name. Using the "-i" option, you can specify the programming language. Go to the next step. 
+
+8. Review the **cdk** initialize process log. To activate the virtual environment, run: 
+     ****Source.venv/bin/activate **** 
+    A virtual environment contains a specific Python interpreter, software libraries, and binaries that are neede to support a project (library or application) .You can ignore the notice about the newer CDK Version if you see it. 
+       Go to the next step. 
+9. In the left Environment window, click to expand the cdkapp directory. Open (double-click) the requirements txt file. 
+
+     A.In the top requirements txt window, review the file contents. 
+     B. This file contains the version of the aws-cdk library and the constructs version, to be downloaded. 
+     C. To install the regulated CDK libraries in the bottom terminal run; 
+           **pip3 install -r requirements.txt** To work with AWS CDK, the python **package installer. pip and virtual.** 
+         To work with the AWS CDK, the Python package installer, pip and virtual environment manager, virtualenv, are required. Windows installations of compatible Python versionstools. On Linux , pip and virtualenv might be provided as separate packages in your package manager. 
+10. Review the libraries installed as part of the pip3 installation. 
+     A. On the top navigation bar, click the AWS Cloud9 icon to expand the dropdown menu. 
+     B. Choose Go to your Dashboard. 
+     C. The AWS Cloud9 console opens in a new browser tab (or window). Go to the next step.  
+
+11. In the new browser tab that you just opened navigate to the Amazon S3 Console. 
+      -On the General purpose buckets tab, click the bucket name that starts with lab-bucket . Go to the next step. 
+
+12. On the Objects tab , review the files that were created as part of the prebuild process. 
+    -The ci_genai_stack.py contains the resources that you will build in the next steps You can use this file as a reference to check that all the resources are configured in your stack. 
+    -The vpcapp.zip file contains the data and the files for a census application.  
+    -The userdata.sh file includes the commands to install the dependencies and the commands for the application. It also loads into Amazon Relational Database (Amazon RDS). 
+    -Choose the check box to select the userdata.sh file. 
+    -Click copy S3 URL.  
+    - You use this URI to download the userdata file to AWS Cloud9 for deployment purposes. Go to the next step. 
+
+13. Return to the AWS Cloud9 IDE in the previous browser tab. 
+    -To cd to the  sub-directory cdkapp that was ordered by the cdk init process in the bottom terminal window,run; 
+       ****cd cdkapp**  NB. There is a cdkapp sub folder within the cdkapp directory.  
+
+    -To download the userdata.sh file, replacing <Userdata-url> with the <url> that you just copied , run ; 
+         aws s3 cp <userdata-url>. 
+
+        -Be sure to include the space and period(.) at the end of the command. In the left Environment window, click to expand the cdkapp directory and the cdkapp subfolder.  
+
+        -Open the downloaded userdata.sh file. Go to the next step. 
+
+14. In the top userdata.sh window, review the file contents. 
+      - This file contains the libraries to be downloaded for the census application to run on Amazon Elastic Compute Cloud<Amazon EC2> instance. 
+      -The vpcapp is the census application that displays the population values from different years and countries. 
+      -The database _populate function connects to the Amazon RDS database(DR) cluster and creates a population table with the data. 
+      -The application function stats the application . Go to the next step.
+ 
+  ** 
+
+15. -In the left Environment window, open (double-click) the cdk.json file. 
+    -In the top cdk.json window, scroll down to the line that reads: ****"@aws-cdk/aws-ec2:restrictDefaultSecurityGroup":true, ****
+
+    -Change the "true" value to "false". 
+
+    The line should now read: **"@aws-cdk/aws-ec2:restrictDefaultSecurityGroup":false,** 
+    -On the navigation bar, click file, and then choose save ( not shown) Go to the next step.   
+
+16. In the cdkapp_stack.py file, be sure to indent the newly added constructs. Failure to do so will result in errors in the deployment process. 
+   -Be sure to properly close the constructs after adding the suggestions. 
+   -In the next steps, using codeWhisperer suggestions you define a stack with AWS CDK constructs to build a 3 tier web application. 
+     The application consists of an Application Load Balancer , an EC2 instance and an Amazon RDS DB that is deployed in a virtual Private Cloud(VPC). 
+
+17. In the top  cdkapp_stack.py window, in the aws_cdk import block, delete the existing import values and then paste the following: 
+  **Duration, 
+    Stack, 
+    SecretValue, 
+    AWS_EC2 as ec2, 
+    AWS-RDS as rds, 
+    AWS_IAM as IAM, 
+    AWS_Elasticloadbalancing v2 as elbv2, 
+*******
+** 
+The AWS CDK includes a collection of constructs, called the AWS Construct Library, that contain construct for every AWS Service. Construct Hub is a resource to help you discover additional constructs from AWS, third parties and the open source CDK community. 
+
+18. To create a virtual Private Cloud, in the top cdkapp_stack_py window, type: 
+     #create a vpc with ipAdresses 10.10.0.0/16 , a NATgateway, a public subnet and private with Egress subnet and press enter.****** Include comment hash at the beginning of the comment. ****** 
+
+    -For the Codewhisperer suggestions highlighted in green, hover the mouse over the suggestion to view it in full. 
+    -Select from in a pop-up box. 
+    -Review the suggestion displayed by codewhisperer 
+    -Choose the suggestion highlighted in green. 
+     Go to nxt  step. 
+
+     Constructs are the basic buildig blocks of AWS CDK Apps. 
+
+19. Review the newly added 
+    - To create a subnet for the database type, Create subnet for the database type. Nxt. 
+
+20. To close the construct, at the end of the subnet configuration block, If it is not yet populated yet type 
+]) . -To create a security group for the load balancer type; 
+   #create a security group for the load balancer . press Enter. 
+
+21. To create a security group for the RDS instance type: **#create a security group for the RDS instance** and press enter. 
+     -Review the codeWhisperer suggestion. 
+     -Choose the suggestion highlighted in green. Go to next. 
+
+22. To create a security group for the EC2 instance type: 
+      **#create a security group for the EC2 instance and press enter.** 
+      -Review the codewhisperer suggestion. 
+      -Choose the suggestion highlighted in green. 
+      Go to next step. 
+  
+23. To add inbound rules to the load blancer, type; 
+ #add ingress rules for the load balancer to allow all traffic and press enter. 
+   -Review the codeWhisperer suggestion. 
+   -The suggestion suggests that you let any IP address access the load balancer on port 80. 
+   -Choose the suggestion highlighted in green, go to the next step. 
+
+24. To allow traffic from the load balancer to the EC2 instance, type: 
+
+**** #add ingress rule for the EC2 instance to allow 8443 traffic from the load balancer and press enter; ****
+   -Review the codeWhisperer suggestion. 
+   -**Choose the suggestion highlighted in green,** 
+   Go to next step.  
+
+25. To allow traffic for the RDS DB instance from the EC2 instance on port 3306, type; 
+   #**add ingress rule for the RDS instance to allow 3306 from the EC2 instance and press Enter**; 
+   -Review the CodeWhisperer suggestion. 
+   -Choose the suggestion highlighted in green. 
+   Go to the next step. 
+      
+26. To allow traffic for the RDS DB instance from the EC2 instance on port 22. type; 
+      #****add ingress rule for the RDS instance to allow 22 from the EC2 instance and press Enter. 
+**** 
+ -Review the CodeWhisperer suggestion. 
+ -Choose the suggestion highlighted in green. Go to next. 
+
+27. To create an Amazon Aurora MySQL Compatible Ediion cluster , type; 
+       #create an rds auroraa mysql clusterand press enter. 
+
+       -Review the CodeWhisperer suggestion. 
+       -Choose the suggestion highlighted in green. 
+       Go to the next step. 
+
+28. Press the space key, and then choose the engine suggestion. 
+    -****For the version to replace 2_09_2, type 3_04_0 ****
+  The suggestions provided might not be to date. A good practice is to always use up-to-date documentation and adjust the suggestions accordingly. Go to next.  
+
+29. On the next line, to use predefined credentials, type: 
+
+ #****credentials using testuser and password1234! ****
+and press enter.
+  -Review the CodeWhisperer suggestion. 
+  -Choose the suggestion highlighted in green. 
+  -Go to the next step.
+
+30. Press Enter and then to get suggestions for the default database name, type: 
+
+   #add default database name Population and press Enter. 
+
+   -Review the CodeWhisperer suggestion. 
+   -Choose the suggestion highlighted in green. 
+   Go to next. 
+
+31. To define the instance properties for database instances, add the instance props configuration to the RDS DB Cluster. 
+     -At the end of the default_database_name statement, press the space key, 
+     -If you do not see the instance_props suggestion,type: 
+       Instance_props{
+        Review the CodeWhisperer suggestion. 
+        Choose the suggestion highlighted in green. Go to the next step. 
+       }
+32. At the end of the instance _props statement, press the space key. 
+    -Review the CodeWhisperer suggestion. 
+    -The suggestion is to add a VPC configuration to the RDS DB Cluster. 
+    -rds instanceProps is deprecated, if the suggestion shows this, delete it and then type curly btaces. 
+
+    Choose the suggestion highlighted in green. Go to next. 
+
+33. To add a security group to the RDS instance, type: 
+
+# add a security group to the rds instance and press enter.  
+Review the codeWhisperer suggestion. Choose the suggestion highlighted in green. Go to next step. 
+
+34. To add a private subnet to the RDS DB instance type: 
+
+ # add a private subnet to the rds instance and press enter. 
+  -Review the Code Whisperer suggestion. 
+  -Choose the suggestion highlighted in green. 
+  Go to the next step. 
+
+35. Press Enter and then based on the CodeWhisperer suggestion, choose to close instance_props and add instances=1 to the RDS DB Cluster. 
+  -Be sure to add only one instance to the cluster definition. 
+  -Be sure to close the cluster definition. 
+To create an Amazon Linux 2 image , type:
+*****create an Amazon Linux2 image and press enter**. 
+***   
+
+36. Press the space key and then review the CodeWhisperer suggestion. 
+-The suggestion is to add a generation, edition, virtualization and storage configuration to the Linux image. 
+-CodeWhisperer might have already added these configurations to the code block. 
+-Choose the suggestion highlighted in green. Go to next step. 
+
+37. Be sure to end the Linux image construct. 
+    -To read the userdata.sh file, type: 
+
+    #**read userdata file from cdkapp directory and press enter**. 
+    -Review the CodeWhisperer suggestion. 
+    -Choose the suggestion highlighted in green. 
+    -To choose the remaining code block, press enter again. Go to nxt step. 
+
+38. To create an EC2 instance for the web server in a private egress subnet, type: 
+
+     #**create a t2.small ec2 instance for the web server in a private egress subnet and vpc.availability_zones[0] press** enter . Review and choose the suggestion highlighted in green. Go to next step. 
+
+39. To add an existing role with the name ec2_instance_role, type: 
+  #****add an existing role with name ec2_instance_role ****
+
+  and press enter. 
+  -Review the CodeWhisperer suggestion. 
+  -Choose the suggestion highlighted in green. Go to the next step. 
+
+40. Be sure to close the EC2 instance construct. 
+ -To create a load balance type:
+
+ # create a load balancer for the web server and press enter. 
+  -Review the CodeWhisperer suggestion. 
+  -Choose the suggestion highlighted in green. Go to the next step. 
+
+41. To create a listener for the load balancer, type: 
+
+# create a listener for the load balancer and press Enter. 
+-Review the CodeWhisperer suggestion. 
+-Choose the suggestion highlighted in green. Go to the next step. 
+
+42. To add targets to the load balancer , type: 
+  # add targets to the load balancer and press enter. 
+
+  -Review the CodeWhisperer suggestion. 
+  -Choose the sugestion highlighted in green. 
+
+  If you see a target=[ec2_instance] field  remove it from the listener.add_targets contruct.  
+
+43. To deploy the web server after the RDS DB cluster is available type: 
+
+     # add depends on for the web server to talk for the RDS Cluster. 
+     Press Enter; 
+ 2. Review the Codewhisperer suggestion. 
+ 3. Choose the suggestion highlighted in green. 
+    Go to the next step. 
+
+44. To deploy the listener after the web server is up and running type: 
+# add depends on for the listener to wait for the web server . 
+  Press Enter.  
+  2. Review the Code  Whisperer suggestion. 
+  3. Choose the suggestion highlighted in green. 
+     Go to the next step. 
+
+45. On the top navigation bar, click File to expand the dropdown menu. 
+2. Choose save. Target groups route requests to individual registered targets, such as EC2 instances, using the protocol and port number that you specify. 
+3. Go to the next step. 
+
+46. The bootstrap process has been run as part of the lab prebuild process. 
+To synthesize the CDK stack, in the bottom terminal window, run: **cdk synth** 
+    ************Bootstrapping is the process of provisioning resources for the AWS CDK
+     before you can deploy AWS CDK apps into an AWS Environment************.   
+
+47. Review the stack details. 
+    2. To deploy the cdkapp stack, run: 
+       ****cdk deploy ****
+The "**cdk synth**" command synthesizes and prints an AWS CloudFormation template for one or more specified stacks. 
+    3. Go to the next step.  
+
+48. Review the stack components. 
+    For "**Do you wish to deploy these changes (y/n)** ? type **y** and enter. Go to the next step. 
+
+49. After the deployment is completed, review the stack ARN. 
+    -Go to the next step.      
+
+50. In the other browser tab, navigate to the AWS CloudFormation console.  
+      - In the Stacks section, under Status, review to ensure that the status for the stack, cdkappstack, is CREATE_COMPLETE. 
+      -Click cdkappStack. **AWS Cloudformation is as service that helps you model and setup your AWS resources so that you can spend less time managing those resources and more time focussing on your applications that run in AWS.** 
+     
+51. In the cdkapp window, click the Resources tab. 
+   - The logical ids might differ from the example screenshot. Review the of created resources. Go to the next step. 
+
+52. Click to expand LB. 
+   LB stands for load balancer. This logical ID could differ from the example shown, 
+    2. For the available load balancer, under Physical ID, click the URL. 
+      -The URL opens in a new browser tab or window. 
+      -Go to the next step.  
+
+53. In the Load balancers section, choose the check box to select the load balancer that starts with Cdkapp. 
+     2. On the Details tab, review the load balancer details. 
+     3. Click the listeners and rules tab. 
+      Go to the next step. 
+
+54. Under Default action, click the Cdkapp target group. 
+ -The target group opens in a new browser tab or window. 
+   Go to the next step. 
+
+55. In the Details section, review the target group details. 
+  Scroll down to the Targets tab. 
+  Go to the next step.  
+
+56. In the registered targets section, click Register targets. 
+   Go to the next step. 
+
+57. In the Available instances section, choose the check box to select the CDKappStack/Webserver instance. 
+    -For Ports the selected instances, to replace the default value, type : **8443**
+ 
+58. In the Review targets section, review the added instance. 
+   - Click Register pending targets. 
+   -Go to the next step.  
+
+59. In the registered targets section, review the instance details. Go to the next step. 
+
+60. Under healthy staus, review to ensure that the health status is healthy. 
+     -To update the health status, click the sections refresh icon. 
+     -A healthy status indicates that the load balancer is able to connect to the EC2 instance, and the applicaton on ec2 is up and running. 
+       Scroll up to details . Go to the next step. 
+
+61. Under the load balancer, click the provided load balancer name. 
+   -The load balancer opens in a new browser tab or window. Go to next step. 
+
+62. Under the DNS name, click the copy icon to copy the load balancer URL. Go to the next step.   
+
+63. To acess the Census application, in a new browser tab, paste the load balancer URL that you just copied. 
+     -You should see the population facts page with year and country options. 
+     -Review the availability zone in which the zone is deployed. 
+
+        [ Cloud9 ](https://aws.amazon.com/cloud9/details/) 
+
+        [CloudFormation ](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stack.html) 
+
+        [CloudWhisperer ](https://docs.aws.amazon.com/codewhisperer/latest/userguide/whisper-full-function-generation.html) 
+        
+                                      ********END******** 
+
+
+
+
