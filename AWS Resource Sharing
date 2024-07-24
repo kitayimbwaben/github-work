@@ -1,0 +1,23 @@
+Building a Central monitoring dashboard that immediately and automatically notifies engineers of a system failure
+
+This solution uses Amazon CloudWatch to monitor your aws resources in real time. 
+ You can create cloudwatch alarms that watch metrics and send notifications or automatically make changes to the resources you are monitoring when a threshold you specify is crossed. 
+
+ CloudWatch natively integrates with more than 70 AWS services such as Amazon Elastic Compute Cloud(Amazon EC2) 
+ Amazon DynamoDB, Amazon Simple Storage Service and Amazon Lambda. 
+
+ In this Solution , three ec2 instances are running All of the instances publish metrics to cloudWatch (CPU and Memory Utilization). 
+
+ The CPU metric is natively provided by the integration between Amazon ec2 and CloudWatch. 
+
+ Memory utilization is a custom metric meaning that the ec2 instances have local Agent that publishes metrics to cloudwatch . Custom metrics can be published to cloudWatch using the AWS CLI or an API. 
+
+ Cloudwatch is then configured with a second alarm that watches a metric and monitors a specific threshold.  
+
+ An alarm can perform one or more actions based on it's configuration in this solution. I use two actions sending a notification to Amazon Simple Notification Service and performing an action on ec2.
+
+ To collect aditional system level and application metrics from both On premises and AWS  resources , including custom metrics such as memory utilization, you can install the cloudwatch Agent. 
+  
+The agent configuration file is a JSON file thatspecifies the metrics and logs that the agent is to collect, including custom metrics.  
+
+I have attached the Project Workflow Diagram to illustrate the Resource Monitoring project i used Visual Paradigm to design this solution.
