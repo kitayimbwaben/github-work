@@ -1,0 +1,32 @@
+                                 BACKING UP DATA (AWS) 
+
+This project focusses on helping a company with AWS Backup to centralize and automate data protection across aws services.  
+
+Using AWS Backup, you can centralize and automate data protection across AWS Services. 
+
+In this Solution , AWS Backup creates a backup of the Amazon Elastic Block Store (EBS) volumes for each Amazon Elastic Compute Cloud instance. 
+
+For this Amazon EBS volumes , this Solution uses a new Backup vault , which is a container that stores and organizes your backups. 
+
+A backup plan, part of the backup vault . Defines when and how you want to backup your AWS resources. you can create multiple backup plans for different backup requirements. 
+
+Assign a resource to a backup plan and that resource is backed up automatically according to the Backup . You can assign resources using tags and resource IDs. 
+
+Each backup vault must have an AWS Key Management Service (AWS KMS) encryption key , which encrypts the backup placed in a backup vault. 
+
+To backup an Amazon Aurora database this solution uses  the default backup vault that is created automantically for the AWS Account.  
+
+                 STEP BY STEP  
+
+Creating a **custom backup vault. 
+**
+Configuring an on_demand backup of Amazon EBS Volumes with a resource ID. 
+
+
+Creating an automated backups plans for  Amazon EC2 attached Amazon EBS Volumes using tags   
+
+Configuring an AWS Backup plan for an Amazon Aurora serverless cluster by using the default backup vault. 
+
+Assign the Amazon Aurora serverless cluster as a resource by using the tag "Backup_DIY" = True.  
+
+I have added the project illustration with in the this folder. 
