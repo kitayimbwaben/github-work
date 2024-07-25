@@ -1,0 +1,110 @@
+              ****ANALYZING NETWORK TRAFFIC WITH VPC FLOWLOGS **** 
+
+This project focusses on a scenario , where an agri farm's goal is to provide farmers , large and small access to their services from all over the world
+
+To empower them , the company has given them access to their own Amazon ec2 service which interacts with the one for the company. 
+   
+Lately due to network charges, their bill has been quite higher than expected. Most likely if their security groups are not locked down, your web servers are compromised. 
+
+**SOLUTION** According to the above **Company's problem statment** , it would be appropriate to Implement the use of VPC 
+FLOW LOGS
+
+It is not required to take off the servers offline. But it is possible to block the unwanted traffic flowing to your web server subnets. After that After that it is possible to analyze the traffic logs to pinpoint any suspicious activity. 
+
+****The need to solve** the Mystery of their traffic patterns.** 
+
+This project includes the following AWS Services; 
+![****Amazon EC2 , Amazon S3 , Amazon VPC****] 
+
+More on Network ACLs **https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html  
+**
+#### ****[OBJECTIVES]**
+**
+****Setup VPC Flow Logs** 
+
+****Analyze traffic within a VPC**** 
+
+Reject inbound traffic using a network Access Control List. 
+**
+
+******Detect and Deny network traffic from a specific IP Address to increase Security**
+
+****This network solution  uses a Network Access Control list and security groups  to filter network traffic . It uses VPC flow logs to analyse the trafic. 
+
+****A network ACL allows or denies specific inbound or outbound traffic at the subnet level. It provides an Optional layer of security for your VPC**. 
+ 
+
+**A network ACL acts as a firewall controlling traffic in and out or more subnets. 
+
+**Security groups are different . They operate at the instance level. 
+**
+    **CONFIGURATION STEPS**     
+
+1. Go to S3. VPC Flow logs is a feature that you can use to capture information about the IP traffic going to and from the network interfaces. Flow logs can be published to Amazon Cloudwatch or AWS S3. 
+
+2. On buckets page click create buckets. 
+
+3. Type in the bucket name. 
+
+4.  Object Ownership section choose ACL enabled. 
+
+5. Click create bucket. 
+ 
+6. In the buckets section , choose the checkbox to select the bucket that you just created . Click copy ARN and then paste it to the text editor of your choice. 
+
+7. Head to the VPC Console. Create  a flowlog  for a VPC , subnet or a network interface.  If you  create a flowlog for a subnet or a VPC , each network interface in the subnet or a VPC is monitored. 
+
+8. In the left navigation pane , click your VPC. 
+
+9. In the flowlog settings section , type in the name. For filter, choose Accept Next. 
+
+10. Scroll down to destination , For destination choose send to an AWS S3bucket. 
+
+11. For s3 bucket ARN , paste the ARN that you copied in earlier. 
+
+12. Scroll down to the bottom of the page . Click create flow log. Next. 
+
+13. After creating a flowlog. It can take several minutes to begin collecting and publishing data to the  chosen destinations.   
+
+14. Click the Flow logs tab Review to ensure that your flowlogs is displayed. 
+
+15. If you choose to publish your log files to an S3 bucket , you can download log files for analysis after your flow log becomes active.  
+
+16. On the Objects tab, click AWSLogs/. next. 
+
+17. On the objects tab , click on the folder name that has your account number. 
+
+18. On the objects tab , click on the refresh icon hence view your AWSLogs/ folder. 
+
+19. Each log file contains flow log records for the IP traffic recorded in the previous five minutes. 
+
+20. On the Objects tab, click the VPC Flowlogs/ folder. Flow logs records are log events consisting of fields that describe the traffic flow. 
+
+21. On the top breadcrumb click click each subfolder in the bucket untill you reach the folder that contains the .gz files. On the objects tab choose the check box to select any available file.  
+
+
+22.  Click download to save the file to your device.  
+
+23. Unzip and open the file in your text editor, and then review the contents to locate any public IP address in the log file.  
+
+24. In the search bar , type in Network ACLs. Select a network ACL associated with your VPC, Click inbound rules, review inbound rules, edit inbound rules then click next. 
+
+25. Click and add a new rule. If you make an error creating this rule rule delete it and then recreate another one. You can create a rule to allow or deny traffic based on type, port , sourcem and desination. 
+
+26. Click on the inbound rules tab, Review the updated inbound rules. In the network ACLs section under associated with , click the subnet for your VPC.  
+
+27. In the subnets section choose the check box to select your subnet,click flowlogs tab, click create flow log tab. click create flow log .go to the nxt step. 
+
+28. In the flowlogs settings section, for name type in the name. 
+
+29. For filter choose reject. nxt 
+
+30. For destination choose send to an Amazon S3 bucket. Paste in the s3 bucket arn that u copied earlier. 
+
+31. On the buckets page, click the vpc flowlogs bucket. 
+
+32. On the top breadcrumb menu , click each sub folder in the bucket untill you see files with the type .gz. In the Objects section review all the file names to locate any file names that matches the my-blocked flow logs IDS that you copied in an earlier step. 
+
+33. Unzip and open the file in your text editor and then review the contents to locate the public IP address that you entered in your deny list. 
+
+                                              **** END****
