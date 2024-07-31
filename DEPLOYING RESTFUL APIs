@@ -1,0 +1,16 @@
+                                      DEPLOYING RESTFUL APIs  
+
+  Using  Amazon API Gateway and an AWS Lambda function to create and deploy an API.  
+
+  1. In this, **Amazon API Gateway acts as the"front door" for applications to access data,business logic, and functionality from backend services**.  
+
+  2. An application makes an HTTP request to access the backend.   
+
+  3. API Gateway **handles the request and all the tasks involved in accepting and processing the API call**.  
+
+ 4.  API Gateway **invokes AWS Lambda which processes the request and returns  a response**. API Gateway receives the response and returns it to the application.   
+
+ 5. With the ability to make synchronous calls from API Gateway to Lambda, users can create fully serverless applications and serverless microservices.    
+
+  6. Using API Gateway, users can create multiple new endpoints and point them to different Lambda functions.   
+
